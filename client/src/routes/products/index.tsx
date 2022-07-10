@@ -10,7 +10,7 @@ const Products: FC = () => {
     <div className="container">
       <div className="filtering">
         <Card>
-          <h1>Filtering</h1>
+          <h1>Filters</h1>
           <div className="selectors">
             <CategorySelector />
             <BrandSelector />

@@ -1,0 +1,21 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  max-width: 500px;
+  margin: 100px auto 0;
+}
+
+.selectors {
+  display: grid;
+  gap: 5px;
+  grid-auto-flow: column;
+  grid-auto-columns: 1fr;
+}
+
+.list,
+.filtering {
+  min-width: 100%;
+  min-height: 100%;
+}

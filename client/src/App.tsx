@@ -1,7 +1,12 @@
-import "./App.css";
+import Products from "./routes/products";
+import "./App.scss";
 
 function App() {
-  return <div></div>;
+  return (
+    <div>
+      <Products />
+    </div>
+  );
 }
 
 export default App;

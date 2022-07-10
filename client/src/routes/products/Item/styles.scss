@@ -1,0 +1,46 @@
+.item {
+  background-color: rgb(0, 30, 60);
+  color: rgb(255, 255, 255);
+  border-radius: 8px;
+  border: 2px solid rgb(30, 73, 118);
+  margin-bottom: 15px;
+  display: flex;
+  > * {
+    flex: 1;
+  }
+  img {
+    max-height: 100px;
+    max-width: 100px;
+    height: auto;
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+  }
+  .info {
+    .title {
+      font-weight: 600;
+      font-size: 16px;
+      line-height: 1.5;
+    }
+    .desc {
+      font-weight: 500;
+      font-size: 12px;
+      line-height: 1.66;
+      color: rgba(255, 255, 255, 0.7);
+    }
+  }
+  .price {
+    position: relative;
+    &.discount {
+      &::before {
+        content: "";
+        top: 50%;
+        left: -5px;
+        transform: translateY(-50%);
+        position: absolute;
+        width: 40px;
+        height: 3px;
+        background-color: rgba(255, 255, 255, 0.7);
+      }
+    }
+  }
+}

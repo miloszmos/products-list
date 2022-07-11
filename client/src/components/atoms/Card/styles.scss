@@ -9,4 +9,7 @@
     rgb(4, 105, 206),
     rgb(0, 44, 88) 120%
   );
+  @media only screen and (max-width: 600px) {
+    padding: 10px;
+  }
 }

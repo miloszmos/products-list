@@ -1,47 +1,51 @@
-import { useEffect, useState } from "react";
-import { BASE_API_ROUTE } from "../../../constants";
-import ProducItem, { ProductType } from "../Item";
+import { useContext, useEffect, useState } from "react";
+import { FiltersContext } from "../../../context/Filters";
+import { SearchParams, useFetchProducts } from "./hooks/useFetchProducts";
+import ProducItem from "../Item";
 import "./styles.scss";
 
-const LIMIT = 5;
-
 const ProductsList = () => {
-  const [products, setProducts] = useState<ProductType[]>([]);
-  const [total, setTotal] = useState<number>(0);
-  const [page, setPage] = useState(1);
+  const { filters, setFilters } = useContext(FiltersContext);
 
-  // TODO - make hook for fetching API
+  const [searchOptions, setSearchOptions] = useState<SearchParams>({
+    page: 1,
+  });
+
+  const { products, total } = useFetchProducts(searchOptions);
+
   useEffect(() => {
-    let ignoreStrictMode = false;
-    const apiCall = async () => {
-      const response = await fetch(
-        `${BASE_API_ROUTE}/products?_page=${page}&_limit=${LIMIT}`
-      );
-      const total = Number(response.headers.get("X-Total-Count"));
-      const data = await response.json();
+    setSearchOptions({
+      page: 1,
+    });
+  }, [filters]);
 
-      if (!ignoreStrictMode) {
-        setTotal(total);
-        setProducts((prev) => [...prev, ...data]);
-      }
-    };
-    apiCall();
-
-    return () => {
-      ignoreStrictMode = true;
-    };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [page]);
+  const handleResetFilters = () => setFilters({});
 
   const handleLoadMore = () => {
-    setPage((prev) => prev + 1);
+    setSearchOptions((prev) => ({
+      ...prev,
+      page: prev.page + 1,
+    }));
   };
 
   return (
-    <div>
+    <div className="list">
+      <div className="total">
+        {!!(filters && Object.entries(filters).length) && (
+          <button onClick={handleResetFilters} className="reset">
+            Reset Filters
+          </button>
+        )}
+        <span>Total Items: {total}</span>
+      </div>
       {products.map((product) => (
         <ProducItem key={product.id} product={product} />
       ))}
+      {products.length === 0 && (
+        <div className="no-results">
+          <p>No Results</p>
+        </div>
+      )}
       <div className="more">
         {products.length < total && (
           <button onClick={handleLoadMore}>Load More</button>

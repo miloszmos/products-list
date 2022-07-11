@@ -5,6 +5,23 @@
   align-items: center;
   max-width: 600px;
   margin: 100px auto 50px;
+  > div:first-child {
+    margin-bottom: 20px;
+  }
+  .top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .badge {
+      margin-left: 8px;
+      background-color: aliceblue;
+      color: rgb(39, 39, 39);
+    }
+    span {
+      font-weight: bold;
+      font-size: 14px;
+    }
+  }
 }
 
 .selectors {
@@ -12,8 +29,8 @@
   gap: 5px;
   grid-auto-flow: column;
   grid-auto-columns: 1fr;
-}
-
-.list {
-  margin-top: 20px;
+  @media only screen and (max-width: 600px) {
+    display: flex;
+    flex-direction: column;
+  }
 }

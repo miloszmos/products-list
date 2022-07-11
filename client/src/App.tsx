@@ -1,10 +1,13 @@
 import Products from "./routes/products";
 import "./App.scss";
+import { FiltersProvider } from "./context/Filters";
 
 function App() {
   return (
     <div>
-      <Products />
+      <FiltersProvider>
+        <Products />
+      </FiltersProvider>
     </div>
   );
 }

@@ -21,7 +21,11 @@ const Selector: FC<{
         name={name}
         id={name}
         onChange={handleChange}
+        placeholder="Jebać PIS"
       >
+        <option value="hehe" disabled hidden>
+          Jebać PIS
+        </option>
         {options.map((option) => (
           <option
             defaultValue={option}

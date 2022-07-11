@@ -1,0 +1,18 @@
+.more {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  button {
+    border: none;
+    vertical-align: middle;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 700;
+    min-width: 150px;
+    padding: 14px 16px;
+    color: #0a1929;
+    background-color: white;
+    cursor: pointer;
+  }
+}
